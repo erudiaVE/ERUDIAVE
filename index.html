@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERUDIA | Soluciones Integrales</title>
+    <!-- Tailwind CSS para el diseño -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuración de colores de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            200: '#bcccdc',
+                            300: '#9fb3c8',
+                            400: '#829ab1',
+                            500: '#627d98',
+                            600: '#486581',
+                            700: '#334e68',
+                            800: '#243b53',
+                            900: '#102a43', // Azul profundo principal
+                        },
+                        accent: {
+                            500: '#2680eb', // Azul brillante para botones
+                            600: '#1b6ec2',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        /* Estilos adicionales suaves */
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
+        .hero-pattern {
+            background-color: #102a43;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23243b53' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-accent-500 selection:text-white">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="flex flex-col">
+                        <span class="font-extrabold text-3xl tracking-tight text-brand-900 leading-none">ERUDIA</span>
+                        <span class="text-[0.65rem] font-medium tracking-[0.2em] text-slate-500 uppercase mt-1">Soluciones Integrales</span>
+                    </div>
+                </div>
+
+                <!-- Enlaces de Escritorio -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="text-slate-600 hover:text-brand-900 font-medium transition-colors">Inicio</a>
+                    <a href="#servicios" class="text-slate-600 hover:text-brand-900 font-medium transition-colors">Servicios</a>
+                    <a href="#compendio-legal" class="text-slate-600 hover:text-brand-900 font-medium transition-colors">Compendio Legal</a>
+                    <a href="#publicaciones" class="text-slate-600 hover:text-brand-900 font-medium transition-colors">Publicaciones</a>
+                    <a href="#nosotros" class="text-slate-600 hover:text-brand-900 font-medium transition-colors">Nosotros</a>
+                    <a href="#contacto" class="text-slate-600 hover:text-brand-900 font-medium transition-colors">Contacto</a>
+                    <a href="#contacto" class="bg-brand-900 hover:bg-brand-800 text-white px-5 py-2.5 rounded-lg font-medium transition-colors shadow-sm">
+                        Comenzar
+                    </a>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-brand-900 focus:outline-none p-2">
+                        <i class="ph ph-list text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Móvil Desplegable -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-1 sm:px-3 flex flex-col">
+                <a href="#inicio" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-900 hover:bg-slate-50">Inicio</a>
+                <a href="#servicios" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-900 hover:bg-slate-50">Servicios</a>
+                <a href="#compendio-legal" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-900 hover:bg-slate-50">Compendio Legal</a>
+                <a href="#publicaciones" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-900 hover:bg-slate-50">Publicaciones</a>
+                <a href="#nosotros" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-900 hover:bg-slate-50">Nosotros</a>
+                <a href="#contacto" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-900 hover:bg-slate-50">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sección Hero -->
+    <section id="inicio" class="hero-pattern min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+        <!-- Elementos decorativos -->
+        <div class="absolute top-1/4 left-10 w-64 h-64 bg-accent-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-40"></div>
+        <div class="absolute bottom-1/4 right-10 w-80 h-80 bg-brand-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-30"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-4">
+                ERUDIA
+            </h1>
+            <h2 class="text-xl md:text-3xl font-light text-brand-200 tracking-widest uppercase mb-8">
+                Soluciones Integrales
+            </h2>
+            <p class="mt-4 text-lg md:text-xl text-brand-100 max-w-3xl mx-auto mb-10 font-light leading-relaxed">
+                Transformamos los desafíos de su empresa en oportunidades de crecimiento. Ofrecemos consultoría, tecnología y estrategias a medida para impulsar su éxito en un entorno competitivo.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#servicios" class="bg-accent-500 hover:bg-accent-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all shadow-lg hover:shadow-accent-500/30 hover:-translate-y-1">
+                    Nuestros Servicios
+                </a>
+                <a href="#contacto" class="bg-white/10 hover:bg-white/20 border border-white/30 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all backdrop-blur-sm">
+                    Contactar un Asesor
+                </a>
+            </div>
+        </div>
+        
+        <!-- Flecha hacia abajo -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#servicios" class="text-brand-300 hover:text-white transition-colors">
+                <i class="ph ph-caret-down text-4xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Sección Servicios -->
+    <section id="servicios" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-accent-600 font-semibold tracking-wider uppercase text-sm">Nuestra Experiencia</span>
+                <h2 class="mt-2 text-3xl md:text-4xl font-bold text-brand-900">Soluciones que impulsan tu negocio</h2>
+                <p class="mt-4 text-slate-600 max-w-2xl mx-auto text-lg">
+                    Un enfoque multidisciplinario para resolver problemas complejos y optimizar los procesos de su organización.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Servicio 1 -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-slate-100 group">
+                    <div class="w-14 h-14 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-900 transition-colors">
+                        <i class="ph ph-chart-line-up text-3xl text-brand-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Consultoría Estratégica</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Análisis profundo de su modelo de negocio para identificar áreas de mejora, optimización de recursos y planificación a largo plazo.
+                    </p>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-slate-100 group">
+                    <div class="w-14 h-14 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-900 transition-colors">
+                        <i class="ph ph-devices text-3xl text-brand-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Desarrollo Tecnológico</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Implementación de software, automatización de procesos y transformación digital adaptada a las necesidades específicas de su sector.
+                    </p>
+                </div>
+
+                <!-- Servicio 3: Formación Académica (Sustituido) -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-slate-100 group">
+                    <div class="w-14 h-14 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-900 transition-colors">
+                        <i class="ph ph-student text-3xl text-brand-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Formación Académica</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Programas de capacitación ejecutiva, talleres especializados y actualización profesional diseñados para potenciar el talento de su organización.
+                    </p>
+                </div>
+
+                <!-- Servicio 4: Asesoría Financiera y Tributaria (Actualizado) -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-slate-100 group">
+                    <div class="w-14 h-14 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-900 transition-colors">
+                        <i class="ph ph-calculator text-3xl text-brand-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Asesoría Financiera y Tributaria</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Planificación fiscal, cumplimiento tributario corporativo, control de presupuestos y estrategias financieras para optimizar sus recursos.
+                    </p>
+                </div>
+
+                <!-- Servicio 5 -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-slate-100 group">
+                    <div class="w-14 h-14 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-900 transition-colors">
+                        <i class="ph ph-shield-check text-3xl text-brand-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Auditoría y Riesgos</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Evaluación de cumplimiento normativo, gestión de riesgos corporativos y auditorías internas para proteger el valor de su empresa.
+                    </p>
+                </div>
+
+                <!-- Servicio 6: Asesoría Profesional para Ejecución de Proyectos Civiles (Sustituido) -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-slate-100 group">
+                    <div class="w-14 h-14 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-900 transition-colors">
+                        <i class="ph ph-hard-hat text-3xl text-brand-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Ejecución de Proyectos Civiles</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Asesoría profesional integral en planificación, gestión de obras, supervisión técnica y control operacional en proyectos de ingeniería civil e infraestructura.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Compendio de Normativas Venezolanas (Ampliación Exhaustiva) -->
+    <section id="compendio-legal" class="py-24 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-accent-600 font-semibold tracking-wider uppercase text-sm">Marco Jurídico y Regulaciones Nacionales</span>
+                <h2 class="mt-2 text-3xl md:text-4xl font-bold text-brand-900">Compendio Legal de Interés Corporativo</h2>
+                <p class="mt-4 text-slate-600 max-w-3xl mx-auto text-lg">
+                    Base de conocimiento y consulta interactiva sobre el ordenamiento jurídico en Venezuela: Leyes Orgánicas, Régimen Tributario SENIAT, Parafiscalidad y Control Fiscal.
+                </p>
+            </div>
+
+            <!-- Buscador Dinámico de Leyes -->
+            <div class="max-w-2xl mx-auto mb-8 relative">
+                <div class="relative">
+                    <input type="text" id="legal-search" onkeyup="searchLegalNorms()" placeholder="Buscar norma por nombre, palabra clave o sector (ej: IVA, SENIAT, LOPCYMAT, CRBV)..." class="w-full pl-12 pr-4 py-4 rounded-xl border border-slate-300 shadow-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none text-slate-800 text-sm md:text-base">
+                    <i class="ph ph-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-2xl text-slate-400"></i>
+                </div>
+            </div>
+
+            <!-- Filtros de categoría por Sector -->
+            <div class="flex flex-wrap justify-center gap-2 mb-10" id="filter-buttons-container">
+                <button onclick="filterNormas('todas', this)" class="norma-btn active bg-brand-900 text-white px-4 py-2.5 rounded-lg text-sm font-medium transition-all shadow-sm">Todas</button>
+                <button onclick="filterNormas('constitucional', this)" class="norma-btn bg-slate-100 text-slate-600 hover:bg-slate-200 px-4 py-2.5 rounded-lg text-sm font-medium transition-all">Constitucional y Control Fiscal</button>
+                <button onclick="filterNormas('tributario', this)" class="norma-btn bg-slate-100 text-slate-600 hover:bg-slate-200 px-4 py-2.5 rounded-lg text-sm font-medium transition-all">Tributario y SENIAT</button>
+                <button onclick="filterNormas('laboral', this)" class="norma-btn bg-slate-100 text-slate-600 hover:bg-slate-200 px-4 py-2.5 rounded-lg text-sm font-medium transition-all">Laboral y Seguridad Social</button>
+                <button onclick="filterNormas('financiero', this)" class="norma-btn bg-slate-100 text-slate-600 hover:bg-slate-200 px-4 py-2.5 rounded-lg text-sm font-medium transition-all">Financiero y Mercantil</button>
+                <button onclick="filterNormas('parafiscal', this)" class="norma-btn bg-slate-100 text-slate-600 hover:bg-slate-200 px-4 py-2.5 rounded-lg text-sm font-medium transition-all">Parafiscales y Especiales</button>
+            </div>
+
+            <!-- Grid de Normativas Ampliado -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="normas-grid">
+                
+                <!-- 1. CRBV -->
+                <div class="norma-card constitucional border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all bg-slate-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-purple-100 text-purple-900 px-3 py-1 rounded-full">Constitucional</span>
+                            <i class="ph ph-scroll text-2xl text-purple-800"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Constitución de la República Bolivariana de Venezuela (CRBV)</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Norma suprema y fundamento del ordenamiento jurídico nacional. Establece los principios del sistema económico, derechos sociales, régimen tributario e instituciones del Estado.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200/80 pt-3 flex justify-between items-center text-xs text-slate-500 font-medium">
+                        <span>G.O. N° 5.908 Extraordinario</span>
+                        <span class="text-purple-700 font-semibold">Ley Fundamental</span>
+                    </div>
+                </div>
+
+                <!-- 2. LOCGRSNCF -->
+                <div class="norma-card constitucional border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all bg-slate-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-purple-100 text-purple-900 px-3 py-1 rounded-full">Control Fiscal</span>
+                            <i class="ph ph-shield-check text-2xl text-purple-800"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Ley Orgánica de la Contraloría General (LOCGRSNCF)</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Regula el Sistema Nacional de Control Fiscal, la vigilancia y fiscalización de los ingresos, gastos y bienes del Estado, aplicable a entes públicos y contratistas.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200/80 pt-3 flex justify-between items-center text-xs text-slate-500 font-medium">
+                        <span>G.O. N° 6.013 Extraordinario</span>
+                        <span class="text-purple-700 font-semibold">Auditoría / Estado</span>
+                    </div>
+                </div>
+
+                <!-- 3. Ley de ISLR -->
+                <div class="norma-card tributario border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all bg-slate-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-blue-100 text-blue-900 px-3 py-1 rounded-full">Tributario</span>
+                            <i class="ph ph-receipt text-2xl text-blue-800"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Ley de Impuesto Sobre la Renta (ISLR) y Reglamento</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Normativa vigente que grava los enriquecimientos anuales, netos y disponibles de personas naturales y jurídicas, tarifas, rebajas y retenciones.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200/80 pt-3 flex justify-between items-center text-xs text-slate-500 font-medium">
+                        <span>Decreto N° 2.163 / G.O. N° 6.210 Ext.</span>
+                        <span class="text-blue-700 font-semibold">Directo</span>
+                    </div>
+                </div>
+
+                <!-- 4. Ley de IVA -->
+                <div class="norma-card tributario border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all bg-slate-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-blue-100 text-blue-900 px-3 py-1 rounded-full">Tributario</span>
+                            <i class="ph ph-percent text-2xl text-blue-800"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Ley de Impuesto al Valor Agregado (IVA)</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Regula la tributación indirecta sobre el consumo de bienes y servicios, alícuotas generales y adicionales, exenciones y créditos fiscales.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200/80 pt-3 flex justify-between items-center text-xs text-slate-500 font-medium">
+                        <span>G.O. N° 6.507 Extraordinario</span>
+                        <span class="text-blue-700 font-semibold">Indirecto</span>
+                    </div>
+                </div>
+
+                <!-- 5. Providencias Recientes del SENIAT -->
+                <div class="norma-card tributario border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all bg-slate-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-blue-100 text-blue-900 px-3 py-1 rounded-full">SENIAT</span>
+                            <i class="ph ph-stamp text-2xl text-blue-800"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Providencias Recientes del SENIAT</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Compendio normativo administrativo: Calendario de Sujetos Pasivos Especiales (SPE), Máquinas Fiscales y Facturación, Retenciones de IVA (SNAT/2015/0049) e IGTF.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200/80 pt-3 flex justify-between items-center text-xs text-slate-500 font-medium">
+                        <span>Providencias Administrativas Varias</span>
+                        <span class="text-blue-700 font-semibold">Administrativo</span>
+                    </div>
+                </div>
+
+                <!-- 6. LOTTT -->
+                <div class="norma-card laboral border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all bg-slate-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-900 px-3 py-1 rounded-full">Laboral</span>
+                            <i class="ph ph-briefcase text-2xl text-emerald-800"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Ley Orgánica del Trabajo (LOTTT)</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Regula las relaciones laborales, contratos, salarios, régimen de prestaciones sociales, utilidades, vacaciones e inamovilidad laboral.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200/80 pt-3 flex justify-between items-center text-xs text-slate-500 font-medium">
+                        <span>G.O. N° 6.076 Extraordinario</span>
+                        <span class="text-emerald-700 font-semibold">Relación Laboral</span>
+                    </div>
+                </div>
+
+                <!-- 7. LOPCYMAT -->
+                <div class="norma-card laboral border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all bg-slate-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-900 px-3 py-1 rounded-full">Salud Ocupacional</span>
+                            <i class="ph ph-first-aid text-2xl text-emerald-800"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Ley de Prevención, Condiciones y Medio Ambiente (LOPCYMAT)</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Marco legal para la salud y seguridad ocupacional en las empresas, Comités de Salud (CSL), ergonomía, accidentes de trabajo e INPSASEL.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200/80 pt-3 flex justify-between items-center text-xs text-slate-500 font-medium">
+                        <span>G.O. N° 38.236 / INPSASEL</span>
+                        <span class="text-emerald-700 font-semibold">Seguridad Laboral</span>
+                    </div>
+                </div>
+
+                <!-- 8. Ley de IVSS -->
+                <div class="norma-card laboral border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all bg-slate-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-900 px-3 py-1 rounded-full">Seguridad Social</span>
+                            <i class="ph ph-first-aid-kit text-2xl text-emerald-800"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Ley del Seguro Social (IVSS) y Reglamento</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Cotizaciones obligatorias patronales y de trabajadores, cobertura en pensiones de vejez, invalidez, indemnizaciones diarias y asistencia médica.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200/80 pt-3 flex justify-between items-center text-xs text-slate-500 font-medium">
+                        <span>G.O. N° 5.976 Extraordinario</span>
+                        <span class="text-emerald-700 font-semibold">Protección Social</span>
+                    </div>
+                </div>
+
+                <!-- 9. FAOV -->
+                <div class="norma-card laboral parafiscal border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all bg-slate-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-900 px-3 py-1 rounded-full">Vivienda</span>
+                            <i class="ph ph-house-line text-2xl text-emerald-800"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Ley del Régimen Prestacional de Vivienda y Hábitat (FAOV)</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Regula los aportes patronales (2%) y de trabajadores (1%) al Fondo de Ahorro Obligatorio para la Vivienda gestionado ante el BANAVIH.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200/80 pt-3 flex justify-between items-center text-xs text-slate-500 font-medium">
+                        <span>G.O. N° 6.000 Extraordinario</span>
+                        <span class="text-emerald-700 font-semibold">BANAVIH</span>
+                    </div>
+                </div>
+
+                <!-- 10. Código de Comercio -->
+                <div class="norma-card financiero border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all bg-slate-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-900 px-3 py-1 rounded-full">Mercantil</span>
+                            <i class="ph ph-buildings text-2xl text-amber-800"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Código de Comercio de Venezuela</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Estatuto fundamental para el ejercicio del comercio, sociedades mercantiles (Compañías Anónimas, SRL), libros de contabilidad e instrumentos cambiarios.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200/80 pt-3 flex justify-between items-center text-xs text-slate-500 font-medium">
+                        <span>G.O. N° 475 Extraordinario</span>
+                        <span class="text-amber-800 font-semibold">Sociedades / SAREN</span>
+                    </div>
+                </div>
+
+                <!-- 11. LOAFSP -->
+                <div class="norma-card financiero border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all bg-slate-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-900 px-3 py-1 rounded-full">Sector Público</span>
+                            <i class="ph ph-scales text-2xl text-amber-800"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Ley Orgánica de la Administración Financiera (LOAFSP)</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Sistemas de presupuesto, contabilidad pública, tesorería y crédito público para entes del Estado, empresas del sector público y contratistas.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200/80 pt-3 flex justify-between items-center text-xs text-slate-500 font-medium">
+                        <span>G.O. N° 6.210 Extraordinario</span>
+                        <span class="text-amber-800 font-semibold">Presupuesto Público</span>
+                    </div>
+                </div>
+
+                <!-- 12. Ley del BCV -->
+                <div class="norma-card financiero border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all bg-slate-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-900 px-3 py-1 rounded-full">Monetario</span>
+                            <i class="ph ph-bank text-2xl text-amber-800"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Ley del Banco Central de Venezuela (BCV)</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Norma rectora de la política monetaria y cambiaria en el país, tasas de interés, mesas de cambio bancarias y publicaciones oficiales de tipos de cambio.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200/80 pt-3 flex justify-between items-center text-xs text-slate-500 font-medium">
+                        <span>G.O. N° 6.211 Extraordinario</span>
+                        <span class="text-amber-800 font-semibold">Autoridad Monetaria</span>
+                    </div>
+                </div>
+
+                <!-- 13. LOCTI -->
+                <div class="norma-card parafiscal border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all bg-slate-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-teal-100 text-teal-900 px-3 py-1 rounded-full">Parafiscal / Ciencia</span>
+                            <i class="ph ph-cpu text-2xl text-teal-800"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Ley de Ciencia, Tecnología e Innovación (LOCTI)</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Establece el aporte parafiscal obligatorio para empresas con ingresos brutos superiores a 100.000 Unidades de Cuenta para el FONACIT.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200/80 pt-3 flex justify-between items-center text-xs text-slate-500 font-medium">
+                        <span>G.O. N° 6.693 Extraordinario</span>
+                        <span class="text-teal-700 font-semibold">FONACIT</span>
+                    </div>
+                </div>
+
+                <!-- 14. Ley Orgánica de Drogas (LOD / FONA) -->
+                <div class="norma-card parafiscal border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all bg-slate-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-teal-100 text-teal-900 px-3 py-1 rounded-full">Parafiscal / FONA</span>
+                            <i class="ph ph-heartbeat text-2xl text-teal-800"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Ley Orgánica de Drogas (LOD / FONA)</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Contribución parafiscal del 1% de la utilidad neta para empresas con 50 o más trabajadores destinada a programas de prevención de adicciones (FONA).
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200/80 pt-3 flex justify-between items-center text-xs text-slate-500 font-medium">
+                        <span>G.O. N° 39.546</span>
+                        <span class="text-teal-700 font-semibold">Fondo Antidrogas</span>
+                    </div>
+                </div>
+
+                <!-- 15. Ley del Deporte -->
+                <div class="norma-card parafiscal border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all bg-slate-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-teal-100 text-teal-900 px-3 py-1 rounded-full">Parafiscal / Deporte</span>
+                            <i class="ph ph-trophy text-2xl text-teal-800"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Ley del Deporte, Actividad Física y Ed. Física</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Crea el Fondo Nacional para el Desarrollo del Deporte alimentado por el 1% de la utilidad neta anual de empresas privadas y públicas.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200/80 pt-3 flex justify-between items-center text-xs text-slate-500 font-medium">
+                        <span>G.O. N° 39.741</span>
+                        <span class="text-teal-700 font-semibold">Fondo del Deporte</span>
+                    </div>
+                </div>
+
+                <!-- 16. LOTEL -->
+                <div class="norma-card parafiscal border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all bg-slate-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-indigo-100 text-indigo-900 px-3 py-1 rounded-full">Telecomunicaciones</span>
+                            <i class="ph ph-broadcast text-2xl text-indigo-800"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Ley Orgánica de Telecomunicaciones (LOTEL)</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Marco legal para la operación de servicios de telecomunicaciones, concesiones de espectro, habilitaciones ante CONATEL y régimen de tasas del sector.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-200/80 pt-3 flex justify-between items-center text-xs text-slate-500 font-medium">
+                        <span>G.O. N° 39.610 / CONATEL</span>
+                        <span class="text-indigo-700 font-semibold">Telecomunicaciones</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Mensaje de Búsqueda Sin Resultados -->
+            <div id="no-results" class="hidden text-center py-12">
+                <i class="ph ph-file-search text-5xl text-slate-300 mb-3"></i>
+                <p class="text-slate-500 text-lg font-medium">No se encontraron normativas que coincidan con la búsqueda.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Publicaciones de Interés -->
+    <section id="publicaciones" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-accent-600 font-semibold tracking-wider uppercase text-sm">Actualidad y Conocimiento</span>
+                <h2 class="mt-2 text-3xl md:text-4xl font-bold text-brand-900">Publicaciones de Interés</h2>
+                <p class="mt-4 text-slate-600 max-w-2xl mx-auto text-lg">
+                    Artículos, análisis corporativos y novedades metodológicas elaboradas por nuestros especialistas.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Artículo 1 -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-100 flex flex-col">
+                    <div class="h-48 bg-slate-200 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Planificación tributaria" class="w-full h-full object-cover">
+                        <span class="absolute top-4 left-4 bg-brand-900 text-white text-xs font-semibold px-3 py-1 rounded-md">Finanzas</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 font-medium">Octubre 2026</span>
+                            <h3 class="text-xl font-bold text-slate-800 mt-2 mb-3 hover:text-accent-600 transition-colors cursor-pointer">
+                                Aspectos Claves en la Planificación Tributaria Corporativa
+                            </h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                Estrategias indispensables para optimizar la carga fiscal y garantizar el estricto cumplimiento ante las autoridades.
+                            </p>
+                        </div>
+                        <a href="#contacto" class="text-brand-900 font-semibold text-sm hover:text-accent-500 inline-flex items-center gap-1">
+                            Leer publicación <i class="ph ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Artículo 2 -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-100 flex flex-col">
+                    <div class="h-48 bg-slate-200 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Formación ejecutiva" class="w-full h-full object-cover">
+                        <span class="absolute top-4 left-4 bg-brand-900 text-white text-xs font-semibold px-3 py-1 rounded-md">Capacitación</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 font-medium">Septiembre 2026</span>
+                            <h3 class="text-xl font-bold text-slate-800 mt-2 mb-3 hover:text-accent-600 transition-colors cursor-pointer">
+                                El Impacto de la Formación Académica Continua en las Empresas
+                            </h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                Cómo la actualización constante de habilidades operativas fortalece la resiliencia organizativa en entornos cambiantes.
+                            </p>
+                        </div>
+                        <a href="#contacto" class="text-brand-900 font-semibold text-sm hover:text-accent-500 inline-flex items-center gap-1">
+                            Leer publicación <i class="ph ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Artículo 3 -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-100 flex flex-col">
+                    <div class="h-48 bg-slate-200 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Transformación Digital" class="w-full h-full object-cover">
+                        <span class="absolute top-4 left-4 bg-brand-900 text-white text-xs font-semibold px-3 py-1 rounded-md">Tecnología</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 font-medium">Agosto 2026</span>
+                            <h3 class="text-xl font-bold text-slate-800 mt-2 mb-3 hover:text-accent-600 transition-colors cursor-pointer">
+                                Innovación Digital en Soluciones Integrales de Gestión
+                            </h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                Herramientas tecnológicas de última generación para automatizar reportes financieros y operacionales.
+                            </p>
+                        </div>
+                        <a href="#contacto" class="text-brand-900 font-semibold text-sm hover:text-accent-500 inline-flex items-center gap-1">
+                            Leer publicación <i class="ph ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Nosotros -->
+    <section id="nosotros" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <!-- Imagen -->
+                <div class="w-full lg:w-1/2">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                        <!-- Placeholder de imagen profesional -->
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Equipo de Erudia trabajando" class="w-full h-auto object-cover aspect-[4/3]">
+                        <div class="absolute inset-0 bg-brand-900/10"></div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mt-4">
+                        <div class="bg-brand-50 p-6 rounded-2xl text-center">
+                            <span class="block text-3xl font-extrabold text-brand-900 mb-1">+10</span>
+                            <span class="text-sm font-medium text-slate-600">Años de Experiencia</span>
+                        </div>
+                        <div class="bg-brand-900 p-6 rounded-2xl text-center">
+                            <span class="block text-3xl font-extrabold text-white mb-1">+500</span>
+                            <span class="text-sm font-medium text-brand-200">Proyectos Exitosos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contenido -->
+                <div class="w-full lg:w-1/2">
+                    <span class="text-accent-600 font-semibold tracking-wider uppercase text-sm">Sobre Nosotros</span>
+                    <h2 class="mt-2 text-3xl md:text-4xl font-bold text-brand-900 mb-6">Comprometidos con la excelencia y la innovación</h2>
+                    
+                    <div class="space-y-6 text-lg text-slate-600">
+                        <p>
+                            En <strong>ERUDIA Soluciones Integrales</strong>, creemos que el éxito empresarial no es producto del azar, sino de la estrategia correcta, la ejecución precisa y la adaptación constante al cambio.
+                        </p>
+                        <p>
+                            Nuestro equipo está compuesto por expertos en múltiples disciplinas: tecnología, finanzas, recursos humanos y gestión estratégica. Trabajamos de la mano con nuestros clientes, no solo como proveedores, sino como socios estratégicos dedicados a alcanzar resultados medibles.
+                        </p>
+                        
+                        <ul class="space-y-4 mt-6">
+                            <li class="flex items-start">
+                                <i class="ph-fill ph-check-circle text-accent-500 text-2xl mr-3 mt-0.5"></i>
+                                <span><strong>Enfoque Personalizado:</strong> Cada empresa es única, diseñamos soluciones a medida.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ph-fill ph-check-circle text-accent-500 text-2xl mr-3 mt-0.5"></i>
+                                <span><strong>Innovación Constante:</strong> Aplicamos las últimas metodologías y tecnologías.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ph-fill ph-check-circle text-accent-500 text-2xl mr-3 mt-0.5"></i>
+                                <span><strong>Resultados Tangibles:</strong> Orientados a maximizar el ROI de su organización.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contacto" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-900">Inicie su transformación hoy</h2>
+                <p class="mt-4 text-slate-600 max-w-2xl mx-auto text-lg">
+                    Contáctenos para agendar una evaluación inicial sin compromiso. Estamos listos para escuchar los desafíos de su empresa.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col lg:flex-row">
+                <!-- Info de Contacto -->
+                <div class="w-full lg:w-2/5 bg-brand-900 text-white p-10 lg:p-12 flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-brand-800 rounded-full mix-blend-multiply filter blur-3xl opacity-50 transform translate-x-1/2 -translate-y-1/2"></div>
+                    
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold mb-6">Información de Contacto</h3>
+                        <p class="text-brand-200 mb-10 leading-relaxed">
+                            Complete el formulario y nuestro equipo de asesores se pondrá en contacto con usted en las próximas 24 horas.
+                        </p>
+
+                        <div class="space-y-6">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-brand-800/50 rounded-full flex items-center justify-center mr-4 shrink-0">
+                                    <i class="ph ph-map-pin text-xl text-accent-500"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Ubicación</p>
+                                    <p class="text-brand-200 text-sm">Edo. Miranda - Venezuela</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-emerald-600/30 rounded-full flex items-center justify-center mr-4 shrink-0 border border-emerald-500/30">
+                                    <i class="ph-fill ph-whatsapp-logo text-2xl text-emerald-400"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">WhatsApp / Teléfono</p>
+                                    <a href="https://wa.me/584129346557?text=Hola,%20quisiera%20solicitar%20información%20sobre%20los%20servicios%20de%20ERUDIA." target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:text-emerald-300 text-sm font-medium flex items-center gap-1 transition-colors">
+                                        0412.934.65.57 <i class="ph ph-arrow-square-out text-xs"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-brand-800/50 rounded-full flex items-center justify-center mr-4 shrink-0">
+                                    <i class="ph ph-envelope-simple text-xl text-accent-500"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Correo Electrónico</p>
+                                    <a href="mailto:Erudiave@gmail.com" class="text-brand-200 hover:text-white text-sm transition-colors">Erudiave@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Redes Sociales y WhatsApp CTA -->
+                    <div class="mt-12 flex items-center gap-4 relative z-10">
+                        <a href="https://wa.me/584129346557?text=Hola,%20me%20gustaría%20contactar%20con%20un%20asesor%20de%20ERUDIA." target="_blank" rel="noopener noreferrer" class="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-4 py-2.5 rounded-lg flex items-center gap-2 text-sm transition-colors shadow-md">
+                            <i class="ph-fill ph-whatsapp-logo text-xl"></i> Chat por WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Formulario Configurado a Erudiave@gmail.com -->
+                <div class="w-full lg:w-3/5 p-10 lg:p-12">
+                    <form action="https://formsubmit.co/Erudiave@gmail.com" method="POST" class="space-y-6">
+                        <!-- Campos Ocultos para FormSubmit -->
+                        <input type="hidden" name="_subject" value="Nuevo Mensaje de Contacto - ERUDIA Website">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="nombre" class="block text-sm font-medium text-slate-700 mb-2">Nombre Completo</label>
+                                <input type="text" id="nombre" name="nombre" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all bg-slate-50 focus:bg-white" placeholder="Ej. Juan Pérez" required>
+                            </div>
+                            <div>
+                                <label for="empresa" class="block text-sm font-medium text-slate-700 mb-2">Empresa</label>
+                                <input type="text" id="empresa" name="empresa" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all bg-slate-50 focus:bg-white" placeholder="Nombre de su empresa">
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-slate-700 mb-2">Correo Electrónico</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all bg-slate-50 focus:bg-white" placeholder="correo@ejemplo.com" required>
+                            </div>
+                            <div>
+                                <label for="telefono" class="block text-sm font-medium text-slate-700 mb-2">Teléfono / WhatsApp</label>
+                                <input type="tel" id="telefono" name="telefono" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all bg-slate-50 focus:bg-white" placeholder="0412-000-0000">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="asunto" class="block text-sm font-medium text-slate-700 mb-2">Servicio de Interés</label>
+                            <select id="asunto" name="servicio_interes" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all bg-slate-50 focus:bg-white">
+                                <option>Asesoría Profesional para Ejecución de Proyectos Civiles</option>
+                                <option>Asesoría Financiera y Tributaria</option>
+                                <option>Formación Académica</option>
+                                <option>Consultoría Estratégica</option>
+                                <option>Desarrollo Tecnológico</option>
+                                <option>Auditoría y Riesgos</option>
+                                <option>Consultas de Normativas Venezolanas</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="mensaje" class="block text-sm font-medium text-slate-700 mb-2">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" rows="4" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all bg-slate-50 focus:bg-white resize-none" placeholder="Cuéntenos un poco sobre las necesidades de su proyecto o empresa..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-brand-900 hover:bg-brand-800 text-white font-bold py-4 px-8 rounded-lg transition-colors shadow-lg hover:shadow-xl flex justify-center items-center gap-2">
+                            <span>Enviar Mensaje</span>
+                            <i class="ph ph-paper-plane-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Botón Flotante de WhatsApp -->
+    <a href="https://wa.me/584129346557?text=Hola,%20deseo%20consultar%20sobre%20los%20servicios%20de%20ERUDIA%20Soluciones%20Integrales." target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 bg-emerald-500 hover:bg-emerald-600 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all flex items-center justify-center group" title="Contactar por WhatsApp">
+        <i class="ph-fill ph-whatsapp-logo text-3xl"></i>
+        <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out font-medium text-sm pl-0 group-hover:pl-2">
+            WhatsApp ERUDIA
+        </span>
+    </a>
+
+    <!-- Footer -->
+    <footer class="bg-brand-900 pt-16 pb-8 border-t border-brand-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <!-- Marca -->
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex flex-col mb-4">
+                        <span class="font-extrabold text-2xl tracking-tight text-white leading-none">ERUDIA</span>
+                        <span class="text-[0.65rem] font-medium tracking-[0.2em] text-brand-300 uppercase mt-1">Soluciones Integrales</span>
+                    </div>
+                    <p class="text-brand-300 text-sm leading-relaxed mb-6">
+                        Impulsando el crecimiento corporativo a través de estrategias inteligentes y ejecución impecable.
+                    </p>
+                </div>
+
+                <!-- Enlaces -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Empresa</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#nosotros" class="text-brand-300 hover:text-white transition-colors text-sm">Sobre Nosotros</a></li>
+                        <li><a href="#servicios" class="text-brand-300 hover:text-white transition-colors text-sm">Nuestros Servicios</a></li>
+                        <li><a href="#" class="text-brand-300 hover:text-white transition-colors text-sm">Casos de Éxito</a></li>
+                        <li><a href="#" class="text-brand-300 hover:text-white transition-colors text-sm">Carreras</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Legal</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-brand-300 hover:text-white transition-colors text-sm">Términos y Condiciones</a></li>
+                        <li><a href="#" class="text-brand-300 hover:text-white transition-colors text-sm">Política de Privacidad</a></li>
+                        <li><a href="#" class="text-brand-300 hover:text-white transition-colors text-sm">Cookies</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Boletín Informativo</h4>
+                    <p class="text-brand-300 text-sm mb-4">Suscríbase para recibir insights y noticias del sector.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Su correo" class="bg-brand-800 border-none text-white px-4 py-2 rounded-l-lg w-full focus:outline-none focus:ring-1 focus:ring-accent-500 text-sm">
+                        <button class="bg-accent-500 hover:bg-accent-600 px-4 py-2 rounded-r-lg text-white transition-colors">
+                            <i class="ph ph-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-brand-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-brand-400 text-sm text-center md:text-left mb-4 md:mb-0">
+                    &copy; 2026 ERUDIA Soluciones Integrales. Todos los derechos reservados.
+                </p>
+                <div class="flex space-x-6 text-brand-400 text-sm">
+                    <span>Diseñado para el éxito</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Funcionalidad Menú Móvil
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const navbar = document.getElementById('navbar');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Cerrar menú móvil al hacer clic en un enlace
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Cambiar estilo del Navbar al hacer scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
+        });
+
+        // Filtrado de Normativas por Botones
+        function filterNormas(categoria, btnElement) {
+            const cards = document.querySelectorAll('.norma-card');
+            const buttons = document.querySelectorAll('.norma-btn');
+            const searchInput = document.getElementById('legal-search');
+
+            // Resetear buscador al cambiar filtro
+            if(searchInput) searchInput.value = '';
+
+            buttons.forEach(b => {
+                b.classList.remove('bg-brand-900', 'text-white', 'shadow-sm');
+                b.classList.add('bg-slate-100', 'text-slate-600');
+            });
+            
+            if(btnElement) {
+                btnElement.classList.remove('bg-slate-100', 'text-slate-600');
+                btnElement.classList.add('bg-brand-900', 'text-white', 'shadow-sm');
+            }
+
+            let visibleCount = 0;
+            cards.forEach(card => {
+                if (categoria === 'todas' || card.classList.contains(categoria)) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const noResults = document.getElementById('no-results');
+            if(visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        // Buscador Dinámico de Leyes en Tiempo Real
+        function searchLegalNorms() {
+            const query = document.getElementById('legal-search').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.norma-card');
+            const noResults = document.getElementById('no-results');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
